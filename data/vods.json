@@ -1,0 +1,28 @@
+[
+  {
+    "id": "v1",
+    "platform": "Youtube",
+    "title": "공포게임 하이라이트",
+    "url": "https://youtu.be/5NV6Rdv1a3I",
+    "thumbnail": "https://picsum.photos/seed/v1/800/450",
+    "length": "12:34",
+    "publishedAt": "2025-10-27T12:00:00Z",
+    "tags": [
+      "공포",
+      "하이라이트"
+    ]
+  },
+  {
+    "id": "v2",
+    "platform": "Twitch",
+    "title": "토크 - 장비 리뷰",
+    "url": "https://twitch.tv/videos/1",
+    "thumbnail": "https://picsum.photos/seed/v2/800/450",
+    "length": "01:02:03",
+    "publishedAt": "2025-10-26T12:00:00Z",
+    "tags": [
+      "토크",
+      "리뷰"
+    ]
+  }
+]

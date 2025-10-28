@@ -1,0 +1,9 @@
+{
+  "demoMode": true,
+  "youtube": {
+    "apiKey": "YOUR_YT_API_KEY"
+  },
+  "twitch": {
+    "clientId": "YOUR_TWITCH_CLIENT_ID"
+  }
+}

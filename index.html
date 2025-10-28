@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko" class="h-full bg-gray-50">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>크리에이터 멀티플랫폼 허브</title>
+  <meta name="description" content="유튜브/Twitch/CHZZK/SOOP 멀티플랫폼 라이브·VOD 허브" />
+  <meta property="og:title" content="크리에이터 멀티플랫폼 허브" />
+  <meta property="og:description" content="라이브 허브 · 편성표 · VOD/클립 · 팀/크루 · 후원/굿즈" />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/icon.svg" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#111827" />
+  <script>
+    // i18n default
+    window.__LOCALE__ = (localStorage.getItem('locale') || (navigator.language || 'ko').startsWith('ko') ? 'ko' : 'en');
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .route-active { @apply text-indigo-600 font-semibold; }
+    .badge { @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset; }
+    .card { @apply bg-white shadow-sm rounded-2xl p-4; }
+    .grid-cards { @apply grid gap-4; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  </style>
+  <script type="application/ld+json" id="ld-org">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "크리에이터 멀티플랫폼 허브",
+    "url": "https://example.github.io/",
+    "logo": "https://example.github.io/assets/icon.svg"
+  }
+  </script>
+</head>
+<body class="h-full text-gray-900">
+  <div id="top-banner" class="bg-indigo-600 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between text-sm">
+      <div id="live-now-badge" class="hidden">
+        <span class="badge ring-white/30 bg-white/10">LIVE</span>
+        <span class="ml-2 opacity-90" id="live-now-text">지금 생방송 중!</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="notify-toggle" class="underline">브라우저 알림 켜기</button>
+        <button id="locale-toggle" class="underline">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="bg-white border-b border-gray-200">
+    <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
+      <a href="#/" class="flex items-center gap-3">
+        <img src="assets/icon.svg" class="w-8 h-8" alt="logo" />
+        <span class="text-lg font-semibold">Creator Hub</span>
+      </a>
+      <nav class="flex items-center gap-4 text-sm">
+        <a href="#/" data-route="home" class="hover:text-indigo-600">홈</a>
+        <a href="#/live" data-route="live" class="hover:text-indigo-600">라이브 허브</a>
+        <a href="#/schedule" data-route="schedule" class="hover:text-indigo-600">편성표/일정</a>
+        <a href="#/vod" data-route="vod" class="hover:text-indigo-600">VOD/클립</a>
+        <a href="#/team" data-route="team" class="hover:text-indigo-600">팀/크루</a>
+        <a href="#/support" data-route="support" class="hover:text-indigo-600">후원/굿즈</a>
+        <a href="#/notices" data-route="notices" class="hover:text-indigo-600">공지/이벤트</a>
+        <a href="#/admin" data-route="admin" class="hover:text-indigo-600">관리</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6">
+    <div id="app" class="space-y-6"></div>
+  </main>
+
+  <footer class="border-t border-gray-200">
+    <div class="mx-auto max-w-7xl px-4 py-6 text-sm text-gray-600 flex items-center justify-between">
+      <span>© <span id="year"></span> Creator Hub</span>
+      <a href="#/privacy" class="hover:underline">개인정보/청소년 보호 고지</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+      });
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "links": [
+    {
+      "label": "유니버설 후원 링크",
+      "url": "https://example.com/support",
+      "desc": "플랫폼 통합 후원 페이지"
+    },
+    {
+      "label": "Twitch 구독",
+      "url": "https://www.twitch.tv/subs/twitch",
+      "desc": "트위치 멤버십"
+    }
+  ],
+  "merch": [
+    {
+      "name": "로고 티셔츠",
+      "image": "https://picsum.photos/seed/m1/600/600",
+      "desc": "S/M/L",
+      "stock": 42,
+      "url": "https://example.com/shop/tshirt"
+    },
+    {
+      "name": "스티커 팩",
+      "image": "https://picsum.photos/seed/m2/600/600",
+      "desc": "5종 세트",
+      "stock": 120,
+      "url": "https://example.com/shop/stickers",
+      "drop_at": "2025-11-04T12:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "크리에이터 멀티플랫폼 허브",
+  "short_name": "CreatorHub",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

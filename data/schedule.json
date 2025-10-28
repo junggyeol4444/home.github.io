@@ -1,0 +1,27 @@
+[
+  {
+    "id": "ev1",
+    "creatorId": "alice",
+    "title": "합동 방송 - 신작 Co-Op",
+    "start": "2025-10-28T16:00:00Z",
+    "end": "2025-10-28T18:00:00Z",
+    "participants": [
+      "alice",
+      "bob"
+    ],
+    "platform": "Youtube",
+    "streamUrl": "https://youtube.com"
+  },
+  {
+    "id": "ev2",
+    "creatorId": "bob",
+    "title": "Q&A",
+    "start": "2025-10-29T12:00:00Z",
+    "end": "2025-10-29T14:00:00Z",
+    "participants": [
+      "bob"
+    ],
+    "platform": "CHZZK",
+    "streamUrl": "https://chzzk.naver.com/"
+  }
+]
