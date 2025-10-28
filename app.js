@@ -200,7 +200,7 @@ function renderHome(app) {
               ${ev.streamUrl? `<a class="text-sm underline" target="_blank" href="${ev.streamUrl}">시청하기</a>`: ''}
             </div>
           </article>
-        `).join('')}
+        `).join('') || `<p class="text-gray-400">등록된 일정이 없습니다.</p>`}
       </div>
     </section>
 
@@ -222,14 +222,14 @@ function renderHome(app) {
               <a class="text-sm text-indigo-600 underline" target="_blank" href="${v.url}">시청하기</a>
             </div>
           </article>
-        `).join('')}
+        `).join('') || `<p class="text-gray-400">등록된 VOD가 없습니다.</p>`}
       </div>
     </section>
 
     <section class="space-y-2">
       <h2 class="text-xl font-semibold">공지</h2>
       <ul class="list-disc pl-6">
-        ${state.notices.slice(0,5).map(n => html`<li><a class="underline" href="#/notices">${n.title}</a> <span class="text-xs text-gray-500">${fmtDate(n.date)}</span></li>`).join('')}
+        ${(state.notices.slice(0,5).length? state.notices.slice(0,5).map(n => html`<li><a class="underline" href="#/notices">${n.title}</a> <span class="text-xs text-gray-500">${fmtDate(n.date)}</span></li>`).join('') : '<li class="text-gray-400">공지 없음</li>')}
       </ul>
     </section>
   `;
@@ -254,7 +254,7 @@ function renderLiveHub(app) {
 
       <h3 class="text-lg font-semibold mt-6">오프라인</h3>
       <div class="grid-cards">
-        ${others.map(cardCreator).join('')}
+        ${others.length ? others.map(cardCreator).join('') : '<p class="text-gray-400">등록된 크리에이터가 없습니다.</p>'}
       </div>
     </section>
   `;
@@ -295,7 +295,7 @@ function renderLiveHub(app) {
             ${embedPlayer(c.liveStatus)}
           </div>
         </article>
-      `).join('');
+      `).join('') : `<p class="text-gray-400">등록된 VOD/클립이 없습니다.</p>`;
     grid.innerHTML = cards || `<p class="text-gray-600">현재 생방송 중인 채널이 없습니다.</p>`;
   };
   $('#platform-filter').onchange = renderGrid;
@@ -336,7 +336,7 @@ function renderSchedule(app) {
           <a class="text-sm underline" href="data/schedule.ics" download>기본 .ics</a>
         </div>
       </div>
-      ${days.map(d => html`
+      ${days.length ? days.map(d => html`
         <div>
           <h3 class="text-lg font-semibold">${d}</h3>
           <div class="mt-2 overflow-x-auto">
@@ -362,7 +362,7 @@ function renderSchedule(app) {
             </table>
           </div>
         </div>
-      `).join('')}
+      `).join('') : `<p class="text-gray-400">등록된 일정이 없습니다.</p>`}
     </section>
   `;
   $('#btn-ical').onclick = () => download('creatorhub-schedule.ics', toICS(state.schedule));
@@ -383,7 +383,7 @@ function renderVOD(app) {
   const render = () => {
     const q = ($('#vod-search').value || '').toLowerCase();
     const list = state.vods.filter(v => !q || v.title.toLowerCase().includes(q) || (v.tags||[]).join(' ').toLowerCase().includes(q));
-    grid.innerHTML = list.map(v => html`
+    grid.innerHTML = (list.length ? list.map(v => html`
       <article class="card">
         <img class="w-full aspect-video object-cover rounded-xl" src="${v.thumbnail}" alt="${v.title}" />
         <div class="mt-3">
@@ -410,7 +410,7 @@ function renderTeam(app) {
     <section class="space-y-4">
       <h2 class="text-xl font-semibold">팀/크루</h2>
       <div class="grid-cards">
-        ${state.teams.map(team => html`
+        ${state.teams.length ? state.teams.map(team => html`
           <article class="card">
             <h3 class="font-semibold">${team.name}</h3>
             <div class="mt-2 flex flex-wrap gap-2">
@@ -427,7 +427,7 @@ function renderTeam(app) {
               </ul>
             </div>
           </article>
-        `).join('')}
+        `).join('') : `<p class=\"text-gray-400\">팀/크루가 없습니다.</p>`}
       </div>
     </section>
   `;
@@ -451,13 +451,13 @@ function renderSupport(app) {
     const links = state.support?.links || [];
     return html`
       <div class="grid-cards">
-        ${links.map(l => html`
+        ${links.length ? links.map(l => html`
           <article class="card">
             <h3 class="font-semibold">${l.label}</h3>
             <p class="text-sm text-gray-600">${l.desc||''}</p>
             <a target="_blank" class="underline text-indigo-600 mt-2 inline-block" href="${l.url}">이동</a>
           </article>
-        `).join('')}
+        `).join('') : `<p class=\"text-gray-400\">등록된 후원 링크가 없습니다.</p>`}
       </div>
     `;
   }
@@ -465,7 +465,7 @@ function renderSupport(app) {
     const merch = state.support?.merch || [];
     return html`
       <div class="grid-cards">
-        ${merch.map(m => html`
+        ${merch.length ? merch.map(m => html`
           <article class="card">
             <img class="w-full aspect-square object-cover rounded-xl" src="${m.image}" alt="${m.name}" />
             <div class="mt-3">
@@ -476,7 +476,7 @@ function renderSupport(app) {
               <a target="_blank" class="underline text-indigo-600 mt-2 inline-block" href="${m.url}">구매하기</a>
             </div>
           </article>
-        `).join('')}
+        `).join('') : `<p class=\"text-gray-400\">등록된 후원 링크가 없습니다.</p>`}
       </div>
     `;
   }
@@ -488,13 +488,13 @@ function renderNotices(app) {
     <section class="space-y-4">
       <h2 class="text-xl font-semibold">공지/이벤트</h2>
       <div class="space-y-4">
-        ${state.notices.map(n=> html`
+        ${state.notices.length ? state.notices.map(n=> html`
           <article class="card">
             <h3 class="font-semibold">${n.title}</h3>
             <p class="text-sm text-gray-600">${fmtDate(n.date,'Asia/Seoul')}</p>
             <p class="mt-2">${n.body}</p>
           </article>
-        `).join('')}
+        `).join('') : `<p class=\"text-gray-400\">팀/크루가 없습니다.</p>`}
       </div>
     </section>
   `;
