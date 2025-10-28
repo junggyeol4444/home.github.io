@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko" class="h-full bg-gray-50">
+<html lang="ko" class="h-full bg-gray-50 dark:bg-gray-900">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -17,11 +17,12 @@
     // i18n default
     window.__LOCALE__ = (localStorage.getItem('locale') || (navigator.language || 'ko').startsWith('ko') ? 'ko' : 'en');
   </script>
+  <script>tailwind.config = { darkMode: "class" };</script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .route-active { @apply text-indigo-600 font-semibold; }
     .badge { @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset; }
-    .card { @apply bg-white shadow-sm rounded-2xl p-4; }
+    .card { @apply bg-white dark:bg-gray-800 shadow-sm rounded-2xl p-4; }
     .grid-cards { @apply grid gap-4; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
   </style>
   <script type="application/ld+json" id="ld-org">
@@ -34,8 +35,8 @@
   }
   </script>
 </head>
-<body class="h-full text-gray-900">
-  <div id="top-banner" class="bg-indigo-600 text-white">
+<body class="h-full text-gray-900 dark:text-gray-100">
+  <div id="top-banner" class="bg-indigo-600 dark:bg-indigo-700 text-white">
     <div class="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between text-sm">
       <div id="live-now-badge" class="hidden">
         <span class="badge ring-white/30 bg-white/10">LIVE</span>
@@ -44,6 +45,7 @@
       <div class="flex items-center gap-3">
         <button id="notify-toggle" class="underline">브라우저 알림 켜기</button>
         <button id="locale-toggle" class="underline">EN</button>
+        <button id="theme-toggle" class="underline">다크</button>
       </div>
     </div>
   </div>
@@ -71,7 +73,7 @@
     <div id="app" class="space-y-6"></div>
   </main>
 
-  <footer class="border-t border-gray-200">
+  <footer class="border-t border-gray-200 dark:border-gray-700">
     <div class="mx-auto max-w-7xl px-4 py-6 text-sm text-gray-600 flex items-center justify-between">
       <span>© <span id="year"></span> Creator Hub</span>
       <a href="#/privacy" class="hover:underline">개인정보/청소년 보호 고지</a>

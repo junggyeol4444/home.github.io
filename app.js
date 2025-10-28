@@ -27,6 +27,14 @@ const i18nDict = {
   en: { home: { title: "Home" }, schedule: { title: "Schedule" }, live: { title: "Live Hub" } }
 };
 
+// --- theme (light/dark) ---
+function applyTheme(t) {
+  const root = document.documentElement;
+  if (t === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+}
+function getTheme() { return localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+function setTheme(t) { localStorage.setItem('theme', t); applyTheme(t); }
+
 // --- utilities ---
 const $ = (sel, el=document)=> el.querySelector(sel);
 const $$ = (sel, el=document)=> Array.from(el.querySelectorAll(sel));
@@ -114,7 +122,8 @@ async function loadJSON(path, fallback = null) {
 }
 
 async function bootstrap() {
-  setLocaleButton(); setNotifyButton(); setRouteActive();
+  setLocaleButton(); setThemeButton(); setNotifyButton(); setRouteActive();
+  applyTheme(getTheme());
   state.config = await loadJSON('config.json', { demoMode: true });
   state.demo = !!state.config.demoMode;
   state.featureFlags = await loadJSON('data/feature_flags.json', {});
